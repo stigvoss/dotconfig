@@ -1,0 +1,37 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/.config/nvim/bundle')
+
+Plugin 'VundleVim/Vundle.vim'
+
+" Status bar mods
+Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'SirVer/ultisnips'
+
+Plugin 'kien/ctrlp.vim'
+
+Bundle 'OmniSharp/omnisharp-vim'
+
+call vundle#end()
+filetype plugin indent on
+
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+let g:OmniSharp_selector_ui = 'ctrlp'
+
+" Highlight 120th column
+set colorcolumn=120
+
+set laststatus=2
+
+set updatetime=500
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+set number
