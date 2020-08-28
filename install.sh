@@ -17,7 +17,7 @@ elif [[ -f $TMUX_CONF ]]; then
     mv $TMUX_CONF $BACKUP_DIR
 fi
 
-ln -s $PWD/.tmux.conf $TMUX_CONF
+ln -s $PWD/tmux.conf $TMUX_CONF
 
 if [[ -L $BASH_ALIASES ]]; then
     rm $BASH_ALIASES
@@ -25,7 +25,7 @@ elif [[ -f $BASH_ALIASES ]]; then
     mv $BASH_ALIASES $BACKUP_DIR
 fi
 
-ln -s $PWD/.bash_aliases $BASH_ALIASES
+ln -s $PWD/aliases $BASH_ALIASES
 
 # Setup Neovim
 mkdir -p $NVIM_BUNDLE_DIR
@@ -42,7 +42,7 @@ elif [[ -d $NVIM_BUNDLE_DIR/Vundle.vim ]]; then
     mv $NVIM_BUNDLE_DIR/Vundle.vim $BACKUP_DIR
 fi
 
-ln -s $PWD/init.nvim $NVIM_CONF
+ln -s $PWD/nvim.conf $NVIM_CONF
 ln -s $PWD/bundle/Vundle.vim/ $NVIM_BUNDLE_DIR
 
 # Setup Vim
@@ -60,5 +60,5 @@ elif [[ -d $VIM_BUNDLE_DIR/Vundle.vim ]]; then
     mv $VIM_BUNDLE_DIR/Vundle.vim $BACKUP_DIR
 fi
 
-ln -s $PWD/init.nvim $VIM_CONF
+ln -s $PWD/nvim.conf $VIM_CONF
 ln -s $PWD/bundle/Vundle.vim/ $VIM_BUNDLE_DIR
