@@ -9,12 +9,10 @@ cd()
 	fi
 }
 
-alias ls='ls -lhA'
-
-swap()         
+qr()
 {
-	local TMPFILE=tmp.$$
-        mv "$1" $TMPFILE
-	mv "$2" "$1"
-	mv $TMPFILE "$2"
+    qrencode -t UTF8 $1 | cat
 }
+
+alias cd..='cd ..'
+alias ls='ls -lhA'
