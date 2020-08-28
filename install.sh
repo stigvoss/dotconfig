@@ -9,58 +9,47 @@ VIM_CONF=~/.vimrc
 TMUX_CONF=~/.tmux.conf
 BASH_ALIASES=~/.bash_aliases
 
-mkdir -p $BACKUP_DIR
+Install()
+{
+    mkdir -p $BACKUP_DIR
 
-# Setup .tmux.conf
-if [[ -L $TMUX_CONF ]]; then
-    rm $TMUX_CONF
-elif [[ -f $TMUX_CONF ]]; then
-    mv $TMUX_CONF $BACKUP_DIR
-fi
+    # Setup .tmux.conf
+    InstallFile $TMUX_CONF $PWD/tmux.conf
 
-ln -s $PWD/tmux.conf $TMUX_CONF
+    # Setup .bash_aliases
+    InstallFile $BASH_ALIASES $PWD/aliases
 
-# Setup .bash_aliases
-if [[ -L $BASH_ALIASES ]]; then
-    rm $BASH_ALIASES
-elif [[ -f $BASH_ALIASES ]]; then
-    mv $BASH_ALIASES $BACKUP_DIR
-fi
+    # Setup Neovim
+    mkdir -p $NVIM_BUNDLE_DIR
+    InstallFile $NVIM_CONF $PWD/nvim.conf
+    InstallBundle $NVIM_BUNDLE_DIR /Vundle.vim $PWD/bundle
 
-ln -s $PWD/aliases $BASH_ALIASES
+    # Setup Vim
+    mkdir -p $VIM_BUNDLE_DIR
+    InstallFile $VIM_CONF $PWD/nvim.conf
+    InstallBundle $VIM_BUNDLE_DIR /Vundle.vim $PWD/bundle
+}
 
-# Setup Neovim
-mkdir -p $NVIM_BUNDLE_DIR
+InstallBundle()
+{
+    if [[ -L $1$2 ]]; then
+        rm -rf $1$2
+    elif [[ -d $1$2 ]]; then
+        mv $1$2 $BACKUP_DIR
+    fi
 
-if [[ -L $NVIM_CONF ]]; then
-    rm $NVIM_CONF
-elif [[ -f $NVIM_CONF ]]; then
-    mv $NVIM_CONF $BACKUP_DIR
-fi
+    ln -s $3$2 $1
+}
 
-if [[ -L $NVIM_BUNDLE_DIR/Vundle.vim ]]; then
-    rm -rf $NVIM_BUNDLE_DIR/Vundle.vim
-elif [[ -d $NVIM_BUNDLE_DIR/Vundle.vim ]]; then
-    mv $NVIM_BUNDLE_DIR/Vundle.vim $BACKUP_DIR
-fi
+InstallFile()
+{
+    if [[ -L $1 ]]; then
+        rm $1
+    elif [[ -f $1 ]]; then
+        mv $1 $BACKUP_DIR
+    fi
 
-ln -s $PWD/nvim.conf $NVIM_CONF
-ln -s $PWD/bundle/Vundle.vim/ $NVIM_BUNDLE_DIR
+    ln -s $2 $1
+}
 
-# Setup Vim
-mkdir -p $VIM_BUNDLE_DIR
-
-if [[ -L $VIM_CONF ]]; then
-    rm $VIM_CONF
-elif [[ -f $VIM_CONF ]]; then
-    mv $VIM_CONF $BACKUP_DIR
-fi
-
-if [[ -L $VIM_BUNDLE_DIR/Vundle.vim ]]; then
-    rm -rf $VIM_BUNDLE_DIR/Vundle.vim
-elif [[ -d $VIM_BUNDLE_DIR/Vundle.vim ]]; then
-    mv $VIM_BUNDLE_DIR/Vundle.vim $BACKUP_DIR
-fi
-
-ln -s $PWD/nvim.conf $VIM_CONF
-ln -s $PWD/bundle/Vundle.vim/ $VIM_BUNDLE_DIR
+Install
