@@ -11,8 +11,6 @@ BASH_ALIASES=~/.bash_aliases
 
 Install()
 {
-    mkdir -p $BACKUP_DIR
-
     # Setup .tmux.conf
     InstallFile $TMUX_CONF $PWD/tmux.conf
 
@@ -35,6 +33,7 @@ InstallBundle()
     if [[ -L $1$2 ]]; then
         rm -rf $1$2
     elif [[ -d $1$2 ]]; then
+        mkdir -p $BACKUP_DIR
         mv $1$2 $BACKUP_DIR
     fi
 
@@ -46,6 +45,7 @@ InstallFile()
     if [[ -L $1 ]]; then
         rm $1
     elif [[ -f $1 ]]; then
+        mkdir -p $BACKUP_DIR
         mv $1 $BACKUP_DIR
     fi
 
