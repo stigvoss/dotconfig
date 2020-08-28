@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ln -s $PWD/.tmux.conf ~/.tmux.conf
+ln -s $PWD/.bash_aliases ~/.bash_aliases
 
 # Setup Neovim
 mkdir -p ~/.config/nvim/bundle/
