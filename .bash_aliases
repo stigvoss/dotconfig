@@ -14,5 +14,7 @@ qr()
     qrencode -t UTF8 $1 | cat
 }
 
-alias cd..='cd ..'
+alias cd..='cd ../'
 alias ls='ls -lhA'
+alias ..'=cd ../'
+alias cls='clear'
