@@ -11,6 +11,7 @@ BASH_ALIASES=~/.bash_aliases
 
 mkdir -p $BACKUP_DIR
 
+# Setup .tmux.conf
 if [[ -L $TMUX_CONF ]]; then
     rm $TMUX_CONF
 elif [[ -f $TMUX_CONF ]]; then
@@ -19,6 +20,7 @@ fi
 
 ln -s $PWD/tmux.conf $TMUX_CONF
 
+# Setup .bash_aliases
 if [[ -L $BASH_ALIASES ]]; then
     rm $BASH_ALIASES
 elif [[ -f $BASH_ALIASES ]]; then
