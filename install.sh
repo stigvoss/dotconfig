@@ -11,12 +11,12 @@ Install()
     InstallFile ~/.bash_aliases $PWD/aliases
 
     # Setup Neovim
-    mkdir -p $NVIM_BUNDLE_DIR
+    mkdir -p ~/.config/nvim/bundle
     InstallFile ~/.config/nvim/init.nvim $PWD/nvim.conf
     InstallBundle ~/.config/nvim/bundle /Vundle.vim $PWD/bundle
 
     # Setup Vim
-    mkdir -p $VIM_BUNDLE_DIR
+    mkdir -p ~/.vim/bundle
     InstallFile ~/.vimrc $PWD/nvim.conf
     InstallBundle ~/.vim/bundle /Vundle.vim $PWD/bundle
 }
