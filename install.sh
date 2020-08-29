@@ -7,21 +7,25 @@ BACKUP_DIR=~/.bak
 
 Install()
 {
-    # Setup .tmux.conf
-    InstallFile ~/.tmux.conf $PWD/tmux.conf
-
     # Setup .bash_aliases
     InstallFile ~/.bash_aliases $PWD/aliases
-
-    # Setup Neovim
-    mkdir -p ~/.config/nvim/bundle
-    InstallFile ~/.config/nvim/init.nvim $PWD/nvim.conf
-    InstallBundle ~/.config/nvim/bundle /Vundle.vim $PWD/bundle
 
     # Setup Vim
     mkdir -p ~/.vim/bundle
     InstallFile ~/.vimrc $PWD/nvim.conf
     InstallBundle ~/.vim/bundle /Vundle.vim $PWD/bundle
+
+    if [[ -x "$(command -v neovim)" ]]; then
+        # Setup Neovim
+        mkdir -p ~/.config/nvim/bundle
+        InstallFile ~/.config/nvim/init.nvim $PWD/nvim.conf
+        InstallBundle ~/.config/nvim/bundle /Vundle.vim $PWD/bundle
+    fi
+
+    if [[ -x "$(command -v tmux)" ]]; then
+        # Setup .tmux.conf
+        InstallFile ~/.tmux.conf $PWD/tmux.conf
+    fi
 }
 
 InstallBundle()
