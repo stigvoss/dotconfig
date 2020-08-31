@@ -22,6 +22,12 @@ Install()
         InstallBundle ~/.config/nvim/bundle /Vundle.vim $PWD/bundle
     fi
 
+    if [[ -x "$(command -v i3)" ]]; then
+        # Setup i3
+        mkdir -p ~/.config/i3
+        InstallFile ~/.config/i3/config $PWD/i3.conf
+    fi
+
     if [[ -x "$(command -v tmux)" ]]; then
         # Setup .tmux.conf
         InstallFile ~/.tmux.conf $PWD/tmux.conf
