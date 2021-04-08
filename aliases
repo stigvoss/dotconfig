@@ -1,12 +1,12 @@
 cd()
 {
-	if [[ $@ == "@c" ]]; then
-		command cd /mnt/c/
-	elif [[ $@ == "@projects" ]]; then
-		command cd /mnt/c/Projects/
-	else
-		command cd "$@"
-	fi
+    if [[ $@ == "@c" ]]; then
+        command cd /mnt/c/
+    elif [[ $@ == "@projects" ]]; then
+        _go_to_projects
+    else
+        command cd "$@"
+    fi
 }
 
 qr()
@@ -16,7 +16,16 @@ qr()
 
 fm()
 {
-	command nautilus "$@"
+    command nautilus "$@"
+}
+
+_go_to_projects()
+{
+    if [[ -e "/mnt/c/Projects/" ]]; then
+        command cd /mnt/c/Projects/
+    else
+        command cd ~/Projects/
+    fi
 }
 
 alias cd..='cd ../'
