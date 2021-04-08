@@ -14,6 +14,11 @@ qr()
     qrencode -t UTF8 $1 | cat
 }
 
+fm()
+{
+	command nautilus "$@"
+}
+
 alias cd..='cd ../'
 alias ls='ls -lhA'
 alias ..'=cd ../'
